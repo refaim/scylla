@@ -10,7 +10,7 @@ import sys
 import time
 
 
-KILL_TIMEOUT_S = 1
+KILL_TIMEOUT_S = 3
 
 MT_PROGRESS = 'progress'
 MT_RESULT = 'result'
