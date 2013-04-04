@@ -122,6 +122,8 @@ def builder_wrapper(builder, args, queue):
 
 
 def cmake_builder(args, queue):
+    start_time = time.time()
+
     args = dict2obj(args)
 
     build = os.path.join(args.root, args.build_directory, args.compiler)
@@ -187,7 +189,8 @@ def cmake_builder(args, queue):
 
     queue.put({
         'id': args.compiler, 'type': MT_RESULT,
-        'success': success, 'output': open(logpath).read()})
+        'success': success, 'output': open(logpath).read(),
+        'duration': int(time.time() - start_time)})
 
 
 def main():
@@ -267,14 +270,16 @@ def main():
                 if not message.success or args.verbose:
                     stderrs.append((message.id, message.output))
                 if not message.success:
-                    print_colored('[%s] FAILED' % message.id, COLOR_RED)
+                    print_colored('[%s] FAILED [%d seconds]' % (
+                        message.id, message.duration), COLOR_RED)
                     if args.fatal:
                         for process in processes:
                             process.terminate()
                             process.join()
                         break
                 else:
-                    print_colored('[%s] PASSED' % message.id, COLOR_GREEN)
+                    print_colored('[%s] PASSED [%d seconds]' % (
+                        message.id, message.duration), COLOR_GREEN)
 
         templates2colors = (
             ('error C', COLOR_RED),
