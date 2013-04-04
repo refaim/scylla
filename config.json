@@ -1,0 +1,66 @@
+{
+    "build_systems": {
+        "cmake": {
+            "path": ["M:\\dev\\cmake\\bin"],
+            "executable": "M:\\dev\\cmake\\bin\\cmake.exe"
+        }
+    },
+
+    "compilers": {
+        "gcc-3.4.5-x86": {
+            "setenv": [],
+            "path": [
+                "M:\\dev\\MinGW32-3.4.5\\bin",
+                "M:\\dev\\msys\\1.0\\bin"
+            ],
+            "environ": {},
+            "build_systems": {
+                "cmake": {
+                    "generator": "MSYS Makefiles",
+                    "make_command": ["make"]
+                }
+            }
+        },
+        "gcc-4.7.1-x64": {
+            "setenv": [],
+            "path": [
+                "M:\\dev\\MinGW64\\bin",
+                "M:\\dev\\msys\\1.0\\bin"
+            ],
+            "environ": {},
+            "build_systems": {
+                "cmake": {
+                    "generator": "MSYS Makefiles",
+                    "make_command": ["make"]
+                }
+            }
+        },
+        "msvc-17.00.51106.1-x64": {
+            "setenv": [
+                "C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\VC\\bin\\x86_amd64\\vcvarsx86_amd64.bat"
+            ],
+            "path": [],
+            "environ": {},
+            "build_systems": {
+                "cmake": {
+                    "generator": "NMake Makefiles",
+                    "make_command": ["nmake", "/NOLOGO"]
+                }
+            }
+        },
+        "msvc-15.00.21022.08-x86": {
+            "setenv": [
+                "C:\\Program Files (x86)\\Microsoft Visual Studio 9.0\\Common7\\Tools\\vsvars32.bat"
+            ],
+            "path": [],
+            "environ": {},
+            "build_systems": {
+                "cmake": {
+                    "generator": "NMake Makefiles",
+                    "make_command": ["nmake", "/NOLOGO"]
+                }
+            }
+        }
+
+    }
+}
