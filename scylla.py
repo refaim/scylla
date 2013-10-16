@@ -10,7 +10,7 @@ import sys
 import time
 
 
-KILL_TIMEOUT_S = 3
+KILL_TIMEOUT_S = 7
 
 MT_PROGRESS = 'progress'
 MT_RESULT = 'result'
@@ -34,6 +34,7 @@ def print_colored(message, color=COLOR_DEFAULT):
     stdout = ctypes.windll.kernel32.GetStdHandle(STD_OUTPUT_HANDLE)
     ctypes.windll.kernel32.SetConsoleTextAttribute(stdout, color)
     print(message)
+    sys.stdout.flush()
     ctypes.windll.kernel32.SetConsoleTextAttribute(stdout, COLOR_DEFAULT)
     STDOUT_LOCK.release()
 
@@ -230,11 +231,13 @@ def main():
         queue = multiprocessing.Queue()
         processes = []
         for compiler_name, compiler in config.compilers.iteritems():
+            if not compiler.enabled:
+                continue
             path = normalize_paths(build_system.path + compiler.path)
             environ = os.environ
             environ['PATH'] = os.pathsep.join(path) + environ['PATH']
             for name, value in compiler.environ.iteritems():
-                environ[name] = value.encode('utf-8')
+                environ[name.encode('utf-8')] = value.encode('utf-8')
 
             build_args = compiler.build_systems[project.build_system]
             build_args['executable'] = build_system.executable
@@ -285,6 +288,7 @@ def main():
             ('error C', COLOR_RED),
             ('error:', COLOR_RED),
             ('FAILED', COLOR_RED),
+            ('exception', COLOR_RED),
             ('warning:', COLOR_YELLOW),
             ('', COLOR_DEFAULT)
         )

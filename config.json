@@ -8,6 +8,7 @@
 
     "compilers": {
         "gcc-3.4.5-x86": {
+            "enabled": false,
             "setenv": [],
             "path": [
                 "M:\\dev\\MinGW32-3.4.5\\bin",
@@ -22,6 +23,7 @@
             }
         },
         "gcc-4.7.1-x64": {
+            "enabled": true,
             "setenv": [],
             "path": [
                 "M:\\dev\\MinGW64\\bin",
@@ -36,6 +38,7 @@
             }
         },
         "msvc-17.00.51106.1-x64": {
+            "enabled": true,
             "setenv": [
                 "C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\VC\\bin\\x86_amd64\\vcvarsx86_amd64.bat"
             ],
@@ -49,6 +52,7 @@
             }
         },
         "msvc-15.00.21022.08-x86": {
+            "enabled": true,
             "setenv": [
                 "C:\\Program Files (x86)\\Microsoft Visual Studio 9.0\\Common7\\Tools\\vsvars32.bat"
             ],
@@ -60,7 +64,39 @@
                     "make_command": ["nmake", "/NOLOGO"]
                 }
             }
+        },
+        "msvc-16.00.30319.01-x86": {
+            "enabled": false,
+            "setenv": [
+                "C:\\Program Files (x86)\\Microsoft Visual Studio 10.0\\Common7\\Tools\\vsvars32.bat"
+            ],
+            "path": [],
+            "environ": {},
+            "build_systems": {
+                "cmake": {
+                    "generator": "NMake Makefiles",
+                    "make_command": ["nmake", "/NOLOGO"]
+                }
+            }
+        },
+        "icl-13.0.0.089-x64": {
+            "enabled": false,
+            "setenv": [
+                "M:\\dev\\Intel\\Composer XE 2013\\bin\\iclvars_ia32_intel64.bat"
+            ],
+            "path": [
+                "M:\\dev\\Intel\\Composer XE 2013\\bin\\intel64"
+            ],
+            "environ": {
+                "CC": "M:\\dev\\Intel\\Composer XE 2013\\bin\\intel64\\icl.exe",
+                "CXX": "M:\\dev\\Intel\\Composer XE 2013\\bin\\intel64\\icl.exe"
+            },
+            "build_systems": {
+                "cmake": {
+                    "generator": "NMake Makefiles",
+                    "make_command": ["nmake", "/NOLOGO"]
+                }
+            }
         }
-
     }
 }
